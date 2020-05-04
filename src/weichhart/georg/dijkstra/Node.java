@@ -16,6 +16,35 @@ public class Node {
 		this.id = id;
 	}
 
+	
+	public String toString() {
+		StringBuilder result = toStringBuilder(new LinkedList<Node>());
+		return result.toString();
+	}
+	
+	public StringBuilder toStringBuilder(LinkedList<Node> observed) {
+		//System.out.println(id);
+		StringBuilder sb = new StringBuilder(id);
+		if(!observed.contains(this)) {
+			observed.add(this);
+			for(Edge e : getEdgesTo()) {
+				if(e!=Edge.NO_EDGE)
+					sb.append("-").append(e.toStringBuilder(observed));
+			}
+		} else 
+			sb.append("|");
+		return sb;
+	}
+	
+	public String toResult() {
+		StringBuilder sb = new StringBuilder( getId());
+		if(getSelectedSource()!=null) {
+			sb.append("-");
+			sb.append(getSelectedSource().toResult());
+		}
+		return sb.toString();
+	}
+	
 	public LinkedList<Edge> getEdgesTo() {
 		return EdgesTo;
 	}

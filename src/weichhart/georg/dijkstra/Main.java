@@ -102,8 +102,9 @@ public class Main {
 				Node path = Dijkstra.searchGraph(Dijkstra.TransportPaths, n01.getId(), n22.getId());
 				
 			    long endT = System.currentTimeMillis();
-			    long endM = (rt.totalMemory() - rt.freeMemory()) ;
+			    long endM = (rt.totalMemory() - rt.freeMemory());
 				System.out.println(path.toString());
+				System.out.println(path.toResult());
 				System.out.println ("Mem / Time used: " + (endM-startM) + "B " + (endT-startT) + "ms");
 
 	}
