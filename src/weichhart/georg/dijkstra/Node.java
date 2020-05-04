@@ -38,7 +38,7 @@ public class Node {
 	
 	public String toResult() {
 		StringBuilder sb = new StringBuilder( getId());
-		if(getSelectedSource()!=null) {
+		if(getSelectedSource()!=TERMINAL_NODE) {
 			sb.append("-");
 			sb.append(getSelectedSource().toResult());
 		}
