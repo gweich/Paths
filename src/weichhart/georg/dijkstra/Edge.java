@@ -1,4 +1,4 @@
-package weichhart.georg.path;
+package weichhart.georg.dijkstra;
 
 public class Edge {
 
