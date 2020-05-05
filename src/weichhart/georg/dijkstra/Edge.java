@@ -2,23 +2,26 @@ package weichhart.georg.dijkstra;
 
 import java.util.LinkedList;
 
-public class Edge {
+import weichhart.georg.minHeap.AbstractEdge;
+import weichhart.georg.minHeap.AbstractNode;
+import weichhart.georg.minHeap.AbstractNode.TerminalNode;
 
-	public static final Edge NO_EDGE = new Edge();
+public class Edge implements AbstractEdge {
 
 	protected int Weight = Integer.MAX_VALUE;
-	protected Node To = Node.TERMINAL_NODE;
+	protected AbstractNode To = TerminalNode.TERMINAL_NODE;
 
-	StringBuilder toStringBuilder(LinkedList<Node> observed) {
-		//System.out.println("-E"+Weight+"-");
-		StringBuilder sb = new StringBuilder( Integer.toString(Weight));
-		if(getTo()!=Node.TERMINAL_NODE) {
+	public StringBuilder toStringBuilder(LinkedList<AbstractNode> observed) {
+		// System.out.println("-E"+Weight+"-");
+		StringBuilder sb = new StringBuilder(Integer.toString(Weight));
+		if (getTo() != TerminalNode.TERMINAL_NODE) {
 			sb.append("->");
 			sb.append(getTo().toStringBuilder(observed));
 		}
 		return sb;
 	}
-	
+
+	@Override
 	public int getWeight() {
 		return Weight;
 	}
@@ -27,7 +30,8 @@ public class Edge {
 		Weight = weight;
 	}
 
-	public Node getTo() {
+	@Override
+	public AbstractNode getTo() {
 		return To;
 	}
 

@@ -2,78 +2,84 @@ package weichhart.georg.dijkstra;
 
 import java.util.LinkedList;
 
-public class Node {
+import weichhart.georg.minHeap.AbstractEdge;
+import weichhart.georg.minHeap.AbstractNode;
 
-	public static final Node TERMINAL_NODE = new Node("!");
+public class Node implements AbstractNode {
 
-	protected LinkedList<Edge> EdgesTo = new LinkedList<Edge>();
+	protected LinkedList<AbstractEdge> EdgesTo = new LinkedList<>();
 	protected int PathValue = Integer.MAX_VALUE;
-	protected Node SelectedSource = Node.TERMINAL_NODE;
-	
-	protected String id; 
-	
+	protected AbstractNode SelectedSource = TerminalNode.TERMINAL_NODE;
+
+	protected String id;
+
 	public Node(String id) {
 		this.id = id;
 	}
 
-	
 	public String toString() {
-		StringBuilder result = toStringBuilder(new LinkedList<Node>());
+		StringBuilder result = toStringBuilder(new LinkedList<AbstractNode>());
 		return result.toString();
 	}
-	
-	public StringBuilder toStringBuilder(LinkedList<Node> observed) {
-		//System.out.println(id);
+
+	public StringBuilder toStringBuilder(LinkedList<AbstractNode> observed) {
+		// System.out.println(id);
 		StringBuilder sb = new StringBuilder(id);
-		if(!observed.contains(this)) {
+		if (!observed.contains(this)) {
 			observed.add(this);
-			for(Edge e : getEdgesTo()) {
-				if(e!=Edge.NO_EDGE)
+			for (AbstractEdge e : getEdgesTo()) {
+				if (e != AbstractEdge.NoEdge.NO_EDGE)
 					sb.append("-").append(e.toStringBuilder(observed));
 			}
-		} else 
+		} else
 			sb.append("|");
 		return sb;
 	}
-	
+
+	@Override
 	public String toResult() {
-		StringBuilder sb = new StringBuilder( getId());
-		if(getSelectedSource()!=TERMINAL_NODE) {
+		StringBuilder sb = new StringBuilder(getId());
+		if (getSelectedSource() != TerminalNode.TERMINAL_NODE) {
 			sb.append("-");
 			sb.append(getSelectedSource().toResult());
 		}
 		return sb.toString();
 	}
-	
-	public LinkedList<Edge> getEdgesTo() {
+
+	@Override
+	public LinkedList<AbstractEdge> getEdgesTo() {
 		return EdgesTo;
 	}
 
-	public void setEdgesTo(LinkedList<Edge> edgesTo) {
+	public void setEdgesTo(LinkedList<AbstractEdge> edgesTo) {
 		EdgesTo = edgesTo;
 	}
-	
-	public boolean addEdgeTo(Edge to) {
+
+	public boolean addEdgeTo(AbstractEdge to) {
 		return EdgesTo.add(to);
 	}
-	
+
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public int getPathValue() {
 		return PathValue;
 	}
 
+	@Override
 	public void setPathValue(int pathValue) {
 		PathValue = pathValue;
 	}
 
-	public Node getSelectedSource() {
+	public AbstractNode getSelectedSource() {
 		return SelectedSource;
 	}
 
-	public void setSelectedSource(Node selectedSource) {
+	@Override
+	public void setSelectedSource(AbstractNode selectedSource) {
 		SelectedSource = selectedSource;
 	}
 

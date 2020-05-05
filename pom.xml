@@ -3,6 +3,13 @@
   <groupId>Weichhart.Georg</groupId>
   <artifactId>Paths</artifactId>
   <version>0.0.1</version>
+  <repositories>
+    <repository>
+		<id>github</id>
+        <name>GitHub Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/gweich/Trees</url>    
+     </repository>
+  </repositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
