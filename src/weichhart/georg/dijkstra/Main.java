@@ -1,6 +1,8 @@
 package weichhart.georg.dijkstra;
 
-import weichhart.georg.minHeap.AbstractNode;
+import weichhart.georg.network.AbstractNode;
+import weichhart.georg.network.Edge;
+import weichhart.georg.network.Node;
 
 public class Main {
 
