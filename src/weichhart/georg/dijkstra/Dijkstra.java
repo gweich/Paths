@@ -12,7 +12,11 @@ import weichhart.georg.network.Node;
  * While the original algorithm uses a min-priority queue and runs in time O(|V|+|E| log |V|) (where |V| is the number of nodes and 
  * |E| is the number of edges), it can also be implemented in O(V^2) using an array.
  * 
- * 
+ * In common presentations of Dijkstra's algorithm, initially all nodes are entered into the priority queue. 
+ * This is, however, not necessary: the algorithm can start with a priority queue that contains only one item, 
+ * and insert new items as they are discovered (instead of doing a decrease-key, check whether the key is in the queue; 
+ * if it is, decrease its key, otherwise insert it).[6]:198 This variant has the same worst-case bounds as the common variant, 
+ * but maintains a smaller priority queue in practice, speeding up the queue operations
  * 
  * @author gweich
  *
